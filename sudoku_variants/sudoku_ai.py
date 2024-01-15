@@ -149,6 +149,7 @@ def _erase_board_helper(
                 coords_to_erase.append((i, j))
             elif not b:
                 cur_board[i][j] = 0
+    random.shuffle(coords_to_erase)
 
     has_erase = True
     num_erase = 0
@@ -159,7 +160,6 @@ def _erase_board_helper(
 
     while has_erase and num_erase < max_erased:
         has_erase = False
-        random.shuffle(coords_to_erase)
 
         for i, j in coords_to_erase:
             if cur_board[i][j] in DIGITS:
