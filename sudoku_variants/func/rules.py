@@ -4,13 +4,13 @@ import sys
 from pathlib import Path
 
 sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
-from rule import Rule, RuleWithData
+from rule import Rule, RuleWithData, Orthogonal, SubBoard, Jigsaw
 
 # because Python doesn't have extension
 
 
 def to_name(rules: List[Rule]):
-    return ", ".join(r.get_name() for r in rules)
+    return ", ".join(str(r) for r in rules)
 
 
 def check_move(rules: List[Rule], board: List[List[int]], row: int, col: int, digit: int) -> bool:
@@ -35,3 +35,12 @@ def extract_data_from_board(rules: List[Rule], board: List[List[int]]):
     for rule in rules:
         if isinstance(rule, RuleWithData):
             rule.extract_data_from_board(board)
+
+
+def with_standard_rules(rules: List[Rule]) -> List[Rule]:
+    standard_rules = [Orthogonal(), SubBoard()]
+    for rule in rules:
+        if isinstance(rule, Jigsaw):
+            standard_rules = [Orthogonal()]
+
+    return standard_rules + rules

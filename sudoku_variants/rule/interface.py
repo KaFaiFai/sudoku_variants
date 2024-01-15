@@ -21,9 +21,8 @@ class Rule:
         NOTE: do not remove the candidates at (row, col)
         """
         return candidates
-        raise NotImplementedError("Please implement this method")
 
-    def get_name(self) -> str:
+    def __str__(self) -> str:
         return type(self).__name__
 
 
