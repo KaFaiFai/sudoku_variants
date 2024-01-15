@@ -7,10 +7,10 @@ from pathlib import Path
 
 
 sys.path.append(str((Path(__file__) / "..").resolve()))
-from sudoku_variants import Sudoku
+from sudoku import Sudoku
 from rule import Rule, check_move, populate_initial_data, extract_data_from_board
 from model import copy_board
-from helper.const import NUM_ROW, NUM_COL, DIGITS
+from sudoku_const import NUM_ROW, NUM_COL, DIGITS
 
 
 class SudokuAI:

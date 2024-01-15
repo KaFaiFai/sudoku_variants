@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.append(str((Path(__file__) / "..").resolve()))
 from rule import Rule, check_move, to_name
 from model import copy_board, shape_of_board
-from helper.const import NUM_ROW, NUM_COL, DIGITS
+from sudoku_const import NUM_ROW, NUM_COL, DIGITS
 
 
 class Sudoku:
@@ -28,9 +28,7 @@ class Sudoku:
         board_shape = shape_of_board(board)
         expected_shape = (NUM_ROW, NUM_COL)
         if board_shape != expected_shape:
-            raise TypeError(
-                f"Expect board to have shape {expected_shape}, got {board_shape}"
-            )
+            raise TypeError(f"Expect board to have shape {expected_shape}, got {board_shape}")
 
         self.board = board
         self.rules = rules

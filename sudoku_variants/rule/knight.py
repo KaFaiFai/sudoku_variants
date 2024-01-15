@@ -7,7 +7,7 @@ sys.path.append(str((Path(__file__) / "..").resolve()))
 from interface import Rule
 
 sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
-from helper.const import NUM_ROW, NUM_COL, DIGITS
+from sudoku_const import NUM_ROW, NUM_COL, DIGITS
 
 
 class Knight(Rule):
@@ -22,9 +22,7 @@ class Knight(Rule):
         (-2, -1),
     )
 
-    def check_move(
-        self, board: List[List[int]], row: int, col: int, digit: int
-    ) -> bool:
+    def check_move(self, board: List[List[int]], row: int, col: int, digit: int) -> bool:
         if digit not in DIGITS:
             return True
 
