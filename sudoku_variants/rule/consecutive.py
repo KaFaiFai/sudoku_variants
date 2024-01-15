@@ -23,7 +23,7 @@ class Consecutive(Rule, RuleWithData):
 
     def __init__(self, data: Optional[ConsecutiveDataType] = None) -> None:
         """
-        data contains a list of neighbours which is a pair of coordinates
+        data: a list of neighbours which is a pair of coordinates
         """
         super().__init__()
         self.data: ConsecutiveDataType

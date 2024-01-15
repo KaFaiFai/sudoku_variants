@@ -41,7 +41,7 @@ class SubBoard(Rule):
 
             for i in range(row_start, row_end):
                 for j in range(col_start, col_end):
-                    if (i != row) or (j != col):
+                    if (i, j) != (row, col):
                         candidates[i][j][digit - 1] = False
 
         return candidates

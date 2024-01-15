@@ -8,3 +8,4 @@ from sub_board import SubBoard
 from knight import Knight
 from king import King
 from consecutive import Consecutive
+from jigsaw import Jigsaw
