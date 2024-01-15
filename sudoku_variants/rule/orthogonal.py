@@ -32,10 +32,12 @@ class Orthogonal(Rule):
     ) -> List[List[List[bool]]]:
         if digit in DIGITS:
             for col_index in range(NUM_COL):
-                candidates[row][col_index][digit - 1] = False
+                if col_index != col:
+                    candidates[row][col_index][digit - 1] = False
 
             for row_index in range(NUM_ROW):
-                candidates[row_index][col][digit - 1] = False
+                if row_index != row:
+                    candidates[row_index][col][digit - 1] = False
 
             candidates[row][col] = [False for _ in range(len(DIGITS))]
 

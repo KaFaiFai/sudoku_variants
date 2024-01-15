@@ -76,6 +76,21 @@ def _get_first_empty_or_none(board: List[List[int]]):
     return None
 
 
+def _init_candidates(board: Optional[List[List[int]]], rules: Optional[List[Rule]]) -> List[List[List[bool]]]:
+    """
+    True -> possible candidate; False -> impossible candidate
+    """
+    candidates = [[[True for _ in range(len(DIGITS))] for _ in range(NUM_COL)] for _ in range(NUM_ROW)]
+    if (board is None) or (rules is None):
+        return candidates
+
+    for row in range(NUM_ROW):
+        for col in range(NUM_COL):
+            digit = board[row][col]
+            candidates = R.remove_candidates(rules, candidates, row, col, digit)
+    return candidates
+
+
 def _solve_helper(
     board: List[List[int]],
     rules: List[Rule],
@@ -141,7 +156,7 @@ def _erase_board_helper(
     if mask is None:
         mask = [[None for _ in range(NUM_COL)] for _ in range(NUM_ROW)]
 
-    coords_to_erase = []
+    coords_to_erase: List[Tuple[int, int]] = []
     for i, row in enumerate(mask):
         for j, b in enumerate(row):
             # b -> None: potential cell to erase, -> False: always erase, -> True: always keep
@@ -150,6 +165,8 @@ def _erase_board_helper(
             elif not b:
                 cur_board[i][j] = 0
     random.shuffle(coords_to_erase)
+    # candidates = _init_candidates(cur_board, rules)
+    # coords_to_erase.sort(key=lambda c: sum(candidates[c[0]][c[1]]))
 
     has_erase = True
     num_erase = 0

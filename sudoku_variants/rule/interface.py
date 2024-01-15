@@ -17,8 +17,10 @@ class Rule:
         self, candidates: List[List[List[bool]]], row: int, col: int, digit: int
     ) -> List[List[List[bool]]]:
         """
-        Remove candidates based on the move to accelerate generation process
+        Remove candidates if the move is carried out to accelerate generation process
+        NOTE: do not remove the candidates at (row, col)
         """
+        return candidates
         raise NotImplementedError("Please implement this method")
 
     def get_name(self) -> str:
