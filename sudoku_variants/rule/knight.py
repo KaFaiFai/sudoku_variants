@@ -31,7 +31,7 @@ class Knight(Rule):
                 knightDigit = board[row + m[0]][col + m[1]]
                 if digit == knightDigit:
                     return False
-            except:
+            except IndexError:
                 pass
 
         return True
