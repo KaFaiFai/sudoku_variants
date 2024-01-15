@@ -1,13 +1,12 @@
 from typing import List
-from copy import deepcopy
 
 import sys
 from pathlib import Path
 
 sys.path.append(str((Path(__file__) / "..").resolve()))
-from rule import Rule, check_move, to_name
-from model import copy_board, shape_of_board
-from helper.const import NUM_ROW, NUM_COL, DIGITS
+from rule import Rule
+from func import board as B, rules as R
+from sudoku_const import NUM_ROW, NUM_COL, DIGITS
 
 
 class Sudoku:
@@ -25,12 +24,10 @@ class Sudoku:
         Raises:
             TypeError: when the shape of board is not expected
         """
-        board_shape = shape_of_board(board)
+        board_shape = B.shape_of_board(board)
         expected_shape = (NUM_ROW, NUM_COL)
         if board_shape != expected_shape:
-            raise TypeError(
-                f"Expect board to have shape {expected_shape}, got {board_shape}"
-            )
+            raise TypeError(f"Expect board to have shape {expected_shape}, got {board_shape}")
 
         self.board = board
         self.rules = rules
@@ -39,7 +36,7 @@ class Sudoku:
         self.board[row][col] = digit
 
     def check_move(self, row, col, digit) -> bool:
-        return check_move(self.rules, self.board, row, col, digit)
+        return R.check_move(self.rules, self.board, row, col, digit)
 
     def check_board(self) -> bool:
         board = [[0 for _ in range(NUM_COL)] for _ in range(NUM_ROW)]
@@ -65,7 +62,7 @@ class Sudoku:
             + "+"
         )
 
-        textRows.append(f"Applied rules: {to_name(self.rules)}")
+        textRows.append(f"Applied rules: {R.to_name(self.rules)}")
         textRows.append(sepLine)
         for i, row in enumerate(self.board):
             chars = ["|"]
@@ -81,4 +78,4 @@ class Sudoku:
         return "\n".join(textRows)
 
     def copy(self) -> "Sudoku":
-        return Sudoku(copy_board(self.board), self.rules)
+        return Sudoku(B.copy_board(self.board), self.rules)

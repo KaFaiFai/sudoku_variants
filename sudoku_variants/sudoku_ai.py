@@ -1,16 +1,15 @@
-import asyncio
 import random
-from typing import Callable, Tuple, Optional, List, Set
+from typing import Tuple, Optional, List
 
 import sys
 from pathlib import Path
 
 
 sys.path.append(str((Path(__file__) / "..").resolve()))
-from sudoku_variants import Sudoku
-from rule import Rule, check_move, populate_initial_data, extract_data_from_board
-from model import copy_board
-from helper.const import NUM_ROW, NUM_COL, DIGITS
+from sudoku import Sudoku
+from rule import Rule
+from func import board as B, rules as R
+from sudoku_const import NUM_ROW, NUM_COL, DIGITS
 
 
 class SudokuAI:
@@ -27,13 +26,13 @@ class SudokuAI:
         """
         Solve an empty sudoku given the rule types and populate data according to it
         """
-        populate_initial_data(rules)
+        R.populate_initial_data(rules)
         empty_board = [[0] * NUM_COL for _ in range(NUM_ROW)]
 
         board, _ = _solve_helper(empty_board, rules, timeout_solve, seed)
         if board is None:
             return None
-        extract_data_from_board(rules, board)
+        R.extract_data_from_board(rules, board)
 
         board = _erase_board_helper(
             board,
@@ -96,8 +95,8 @@ def _solve_helper(
         if empty_cell is not None:
             digits = random.sample(DIGITS, len(DIGITS))
             for digit in digits:
-                if check_move(rules, cur_board, empty_cell[0], empty_cell[1], digit):
-                    new_board = copy_board(cur_board)
+                if R.check_move(rules, cur_board, empty_cell[0], empty_cell[1], digit):
+                    new_board = B.copy_board(cur_board)
                     new_board[empty_cell[0]][empty_cell[1]] = digit
                     stacks.append(new_board)
         else:
@@ -137,17 +136,19 @@ def _erase_board_helper(
     seed: Optional[int],
 ):
     random.seed(seed)
-    cur_board = copy_board(board)
+    cur_board = B.copy_board(board)
+
+    if mask is None:
+        mask = [[None for _ in range(NUM_COL)] for _ in range(NUM_ROW)]
 
     coords_to_erase = []
-    if mask is not None:
-        for i, row in enumerate(mask):
-            for j, b in enumerate(row):
-                # b -> None: potential cell to erase, -> False: always erase, -> True: always keep
-                if b is None:
-                    coords_to_erase.append((i, j))
-                elif not b:
-                    cur_board[i][j] = 0
+    for i, row in enumerate(mask):
+        for j, b in enumerate(row):
+            # b -> None: potential cell to erase, -> False: always erase, -> True: always keep
+            if b is None:
+                coords_to_erase.append((i, j))
+            elif not b:
+                cur_board[i][j] = 0
 
     has_erase = True
     num_erase = 0
@@ -162,7 +163,7 @@ def _erase_board_helper(
 
         for i, j in coords_to_erase:
             if cur_board[i][j] in DIGITS:
-                next_board = copy_board(cur_board)
+                next_board = B.copy_board(cur_board)
                 next_board[i][j] = 0
                 is_unique = _has_unique_solution_helper(next_board, rules, seed=seed)
                 # even if erasing this cell does not have unique solution now, we will never consider it either
