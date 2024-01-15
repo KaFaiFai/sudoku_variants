@@ -63,7 +63,7 @@ class Jigsaw(Rule, RuleWithData):
             partition = data[row][col]
             return (coord, partition)
 
-        def isPartitionConnected(partition: int) -> bool:
+        def is_partition_connected(partition: int) -> bool:
             coords: List[Tuple[int, int]] = []
             for i, row in enumerate(data):
                 for j, p in enumerate(row):
@@ -72,39 +72,36 @@ class Jigsaw(Rule, RuleWithData):
             size = len(coords)
 
             component: List[Tuple[int, int]] = [coords.pop()]
-            hasNewCoord = True
-            while hasNewCoord:
-                hasNewCoord = False
-                newCoords: Set[Tuple[int, int]] = set()
+            has_new_coord = True
+            while has_new_coord:
+                has_new_coord = False
+                new_coords: Set[Tuple[int, int]] = set()
                 for coord in coords:
                     for offset in offsets:
                         neighbour = (coord[0] + offset[0], coord[1] + offset[1])
                         if neighbour in component:
-                            newCoords.add(coord)
+                            new_coords.add(coord)
 
-                if newCoords:
-                    print(newCoords)
-                    hasNewCoord = True
-                    component += newCoords
-                    for c in newCoords:
+                if new_coords:
+                    has_new_coord = True
+                    component += new_coords
+                    for c in new_coords:
                         coords.remove(c)
 
-            print(component, coords)
             return len(component) == size
 
-        max_attempts = 1
+        max_attempts = 300
         for i in range(max_attempts):
-            coord1, partition1 = (0, 2), 0  # init_cell()
-            coord2, partition2 = (2, 3), 1  # init_cell()
+            coord1, partition1 = init_cell()
+            coord2, partition2 = init_cell()
             data[coord1[0]][coord1[1]] = partition2
             data[coord2[0]][coord2[1]] = partition1
 
             is_data_connected = (
-                (partition1 != partition2) and isPartitionConnected(partition1) and isPartitionConnected(partition2)
+                (partition1 != partition2) and is_partition_connected(partition1) and is_partition_connected(partition2)
             )
 
             if not is_data_connected:
-                print(coord1, partition1, coord2, partition2)
                 data[coord1[0]][coord1[1]] = partition1
                 data[coord2[0]][coord2[1]] = partition2
 
