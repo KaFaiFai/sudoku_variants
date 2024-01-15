@@ -149,7 +149,7 @@ def _erase_board_helper(
                 coords_to_erase.append((i, j))
             elif not b:
                 cur_board[i][j] = 0
-    # random.shuffle(coords_to_erase)
+    random.shuffle(coords_to_erase)
 
     has_erase = True
     num_erase = 0
@@ -174,7 +174,6 @@ def _erase_board_helper(
                     break
 
         # even if erasing this cell does not have unique solution now, we will never consider it either
-        # print(checked_coords)
         for c in checked_coords:
             coords_to_erase.remove(c)
         num_erase += 1
