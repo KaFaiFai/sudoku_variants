@@ -32,9 +32,6 @@ class Sudoku:
         self.board = board
         self.rules = rules
 
-    def make_move(self, row, col, digit):
-        self.board[row][col] = digit
-
     def check_move(self, row, col, digit) -> bool:
         return R.check_move(self.rules, self.board, row, col, digit)
 
@@ -46,7 +43,7 @@ class Sudoku:
                 digit = self.board[row][col]
                 if not empty_sudoku.check_move(row, col, digit):
                     return False
-                empty_sudoku.make_move(row, col, digit)
+                empty_sudoku.board[row][col] = digit
 
         return True
 
@@ -62,7 +59,7 @@ class Sudoku:
             + "+"
         )
 
-        textRows.append(f"Applied rules: {R.to_name(self.rules)}")
+        textRows.append(f"Rules: {R.to_name(self.rules)}")
         textRows.append(sepLine)
         for i, row in enumerate(self.board):
             chars = ["|"]
