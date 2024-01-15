@@ -3,8 +3,8 @@ from typing import List
 import sys
 from pathlib import Path
 
-sys.path.append(str((Path(__file__) / "..").resolve()))
-from interface import Rule, RuleWithData
+sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
+from rule import Rule, RuleWithData
 
 # because Python doesn't have extension
 
