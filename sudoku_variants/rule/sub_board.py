@@ -24,7 +24,7 @@ class SubBoard(Rule):
         for i in range(row_start, row_end):
             for j in range(col_start, col_end):
                 cur_digit = board[i][j]
-                if (cur_digit == digit) and (i != row) and (j != col):
+                if (cur_digit == digit) and ((i != row) or (j != col)):
                     return False
 
         return True

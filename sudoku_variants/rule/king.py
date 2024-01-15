@@ -27,11 +27,9 @@ class King(Rule):
             return True
 
         for m in self.king_moves:
-            try:
-                knightDigit = board[row + m[0]][col + m[1]]
-                if digit == knightDigit:
+            if (0 <= row + m[0] < len(board)) and (0 <= col + m[1] < len(board[0])):
+                king_digit = board[row + m[0]][col + m[1]]
+                if digit == king_digit:
                     return False
-            except IndexError:
-                pass
 
         return True

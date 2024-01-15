@@ -60,13 +60,11 @@ class Consecutive(Rule, RuleWithData):
                 cur_digit = board[i][j]
 
                 for offset in self.offsets:
-                    try:
+                    if (0 <= i + offset[0] < len(board)) and (0 <= j + offset[1] < len(board[0])):
                         neighbour_coord = (i + offset[0], j + offset[1])
                         neighbour_digit = board[neighbour_coord[0]][neighbour_coord[1]]
                         if abs(cur_digit - neighbour_digit) == 1:
                             data.append((cur_coord, neighbour_coord))
-                    except IndexError:
-                        pass
 
         size = random.randint(0, len(data))
         self.data = random.sample(data, size)
