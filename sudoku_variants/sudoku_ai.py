@@ -16,7 +16,7 @@ class SudokuAI:
     @staticmethod
     def generate(
         rules: List[Rule],
-        with_normal_rules: bool = True,
+        with_standard_rules: bool = True,
         max_erased: int = NUM_ROW * NUM_COL,
         mask: Optional[List[List[Optional[bool]]]] = None,
         timeout_solve: int = 5000,
@@ -26,6 +26,8 @@ class SudokuAI:
         """
         Solve an empty sudoku given the rule types and populate data according to it
         """
+        if with_standard_rules:
+            rules = R.with_standard_rules(rules)
         R.populate_initial_data(rules)
         empty_board = [[0] * NUM_COL for _ in range(NUM_ROW)]
 
