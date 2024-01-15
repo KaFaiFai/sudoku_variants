@@ -139,15 +139,17 @@ def _erase_board_helper(
     random.seed(seed)
     cur_board = B.copy_board(board)
 
+    if mask is None:
+        mask = [[None for _ in range(NUM_COL)] for _ in range(NUM_ROW)]
+
     coords_to_erase = []
-    if mask is not None:
-        for i, row in enumerate(mask):
-            for j, b in enumerate(row):
-                # b -> None: potential cell to erase, -> False: always erase, -> True: always keep
-                if b is None:
-                    coords_to_erase.append((i, j))
-                elif not b:
-                    cur_board[i][j] = 0
+    for i, row in enumerate(mask):
+        for j, b in enumerate(row):
+            # b -> None: potential cell to erase, -> False: always erase, -> True: always keep
+            if b is None:
+                coords_to_erase.append((i, j))
+            elif not b:
+                cur_board[i][j] = 0
 
     has_erase = True
     num_erase = 0
