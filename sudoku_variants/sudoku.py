@@ -1,5 +1,4 @@
 from typing import List
-from copy import deepcopy
 
 import sys
 from pathlib import Path
