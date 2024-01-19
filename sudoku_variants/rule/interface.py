@@ -1,10 +1,5 @@
 from typing import List
 
-import sys
-from pathlib import Path
-
-sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
-
 
 class Rule:
     def check_move(self, board: List[List[int]], row: int, col: int, digit: int) -> bool:
@@ -26,7 +21,7 @@ class Rule:
         return type(self).__name__
 
 
-class RuleWithData:
+class WithData:
     def populate_initial_data(self):
         """
         Used to reset data or initialize data before solving an empty sudoku

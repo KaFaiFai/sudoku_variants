@@ -1,12 +1,8 @@
 from typing import List
 
-import sys
-from pathlib import Path
-
-sys.path.append(str((Path(__file__) / "..").resolve()))
-from rule import Rule
-from func import board as B, rules as R
-from sudoku_const import NUM_ROW, NUM_COL, DIGITS
+from sudoku_variants.sudoku_const import DIGITS, NUM_COL, NUM_ROW
+from sudoku_variants.rule.interface import Rule
+from sudoku_variants.func import board as B, rules as R
 
 
 class Sudoku:

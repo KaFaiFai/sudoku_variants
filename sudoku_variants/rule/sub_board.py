@@ -1,13 +1,7 @@
 from typing import List
 
-import sys
-from pathlib import Path
-
-sys.path.append(str((Path(__file__) / "..").resolve()))
-from interface import Rule
-
-sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
-from sudoku_const import NUM_ROW, NUM_COL, DIGITS
+from sudoku_variants.rule.interface import Rule
+from sudoku_variants.sudoku_const import DIGITS
 
 
 class SubBoard(Rule):

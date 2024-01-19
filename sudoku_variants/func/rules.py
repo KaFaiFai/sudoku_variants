@@ -1,10 +1,9 @@
 from typing import List
 
-import sys
-from pathlib import Path
-
-sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
-from rule import Rule, RuleWithData, Orthogonal, SubBoard, Jigsaw
+from sudoku_variants.rule.interface import Rule, WithData
+from sudoku_variants.rule.jigsaw import Jigsaw
+from sudoku_variants.rule.orthogonal import Orthogonal
+from sudoku_variants.rule.sub_board import SubBoard
 
 # because Python doesn't have extension
 
@@ -27,13 +26,13 @@ def remove_candidates(
 
 def populate_initial_data(rules: List[Rule]):
     for rule in rules:
-        if isinstance(rule, RuleWithData):
+        if isinstance(rule, WithData):
             rule.populate_initial_data()
 
 
 def extract_data_from_board(rules: List[Rule], board: List[List[int]]):
     for rule in rules:
-        if isinstance(rule, RuleWithData):
+        if isinstance(rule, WithData):
             rule.extract_data_from_board(board)
 
 

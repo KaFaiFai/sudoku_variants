@@ -1,14 +1,9 @@
 import random
 
 from typing import List, Tuple, Optional, Dict, Set
-import sys
-from pathlib import Path
 
-sys.path.append(str((Path(__file__) / "..").resolve()))
-from interface import Rule, RuleWithData
-
-sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
-from sudoku_const import NUM_ROW, NUM_COL, DIGITS
+from sudoku_variants.rule.interface import Rule, WithData
+from sudoku_variants.sudoku_const import DIGITS, NUM_COL, NUM_ROW
 
 JigsawDataType = List[List[int]]
 JigsawPartitionType = Dict[int, List[Tuple[int, int]]]
@@ -18,7 +13,7 @@ def _default_jigsaw_layout():
     return [[row // 3 * 3 + col // 3 for col in range(NUM_COL)] for row in range(NUM_ROW)]
 
 
-class Jigsaw(Rule, RuleWithData):
+class Jigsaw(Rule, WithData):
     def __init__(self, data: Optional[JigsawDataType] = None) -> None:
         """
         data: a 2D board, where each cell indicates the index of its partition
