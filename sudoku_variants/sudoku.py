@@ -1,6 +1,6 @@
 from typing import List
 
-from sudoku_variants.sudoku_const import DIGITS, NUM_COL, NUM_ROW
+from sudoku_variants.const import DIGITS, NUM_COL, NUM_ROW
 from sudoku_variants.rule.interface import Rule
 from sudoku_variants.func import board as B, rules as R
 

@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 sys.path.append(str((Path(__file__) / ".." / "..").resolve()))
-from sudoku_variants import Sudoku, SudokuAI, SudokuConst
+from sudoku_variants import Sudoku, SudokuAI, const
 from sudoku_variants.rule import Orthogonal, SubBoard, Knight, King, Consecutive, Jigsaw
 from sudoku_variants.func import rules as R
 
@@ -25,3 +25,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+    print(const.DIGITS)

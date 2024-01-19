@@ -3,7 +3,7 @@ import random
 from typing import List, Tuple, Optional
 
 from sudoku_variants.rule.interface import Rule, WithData
-from sudoku_variants.sudoku_const import DIGITS, NUM_COL, NUM_ROW
+from sudoku_variants.const import DIGITS, NUM_COL, NUM_ROW
 
 ConsecutiveDataType = List[Tuple[Tuple[int, int], Tuple[int, int]]]
 

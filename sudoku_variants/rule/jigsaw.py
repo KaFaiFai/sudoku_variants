@@ -3,7 +3,7 @@ import random
 from typing import List, Tuple, Optional, Dict, Set
 
 from sudoku_variants.rule.interface import Rule, WithData
-from sudoku_variants.sudoku_const import DIGITS, NUM_COL, NUM_ROW
+from sudoku_variants.const import DIGITS, NUM_COL, NUM_ROW
 
 JigsawDataType = List[List[int]]
 JigsawPartitionType = Dict[int, List[Tuple[int, int]]]

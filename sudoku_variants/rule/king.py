@@ -1,7 +1,7 @@
 from typing import List
 
 from sudoku_variants.rule.interface import Rule
-from sudoku_variants.sudoku_const import DIGITS
+from sudoku_variants.const import DIGITS
 
 
 class King(Rule):
