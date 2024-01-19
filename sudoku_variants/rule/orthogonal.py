@@ -5,6 +5,9 @@ from sudoku_variants.const import DIGITS, NUM_COL, NUM_ROW
 
 
 class Orthogonal(Rule):
+    def description(self) -> str:
+        return "Each column and each row contains all the numbers from 1 to 9 without repetition."
+
     def check_move(self, board: List[List[int]], row: int, col: int, digit: int) -> bool:
         if digit not in DIGITS:
             return True

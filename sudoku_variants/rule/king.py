@@ -16,6 +16,9 @@ class King(Rule):
         (1, 1),
     )
 
+    def description(self) -> str:
+        return "Two cells that are a king's move away (as in chess) must not contain the same number."
+
     def check_move(self, board: List[List[int]], row: int, col: int, digit: int) -> bool:
         if digit not in DIGITS:
             return True

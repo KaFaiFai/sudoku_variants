@@ -5,6 +5,9 @@ from sudoku_variants.const import DIGITS
 
 
 class SubBoard(Rule):
+    def description(self) -> str:
+        return "Each of the nine 3x3 boxes contains all the numbers from 1 to 9 without repetition."
+
     def check_move(self, board: List[List[int]], row: int, col: int, digit: int) -> bool:
         if digit not in DIGITS:
             return True

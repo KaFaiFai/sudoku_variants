@@ -16,6 +16,13 @@ class Consecutive(Rule, WithData):
         (0, 1),
     ]
 
+    def description(self) -> str:
+        return (
+            "If two adjacent cells have a red dot in their shared edge,"
+            " then they must contain consecutive numbers."
+            " (Note: Other adjacent cells may or may not contain consecutive numbers.)"
+        )
+
     def __init__(self, data: Optional[ConsecutiveDataType] = None) -> None:
         """
         data: a list of neighbours which is a pair of coordinates

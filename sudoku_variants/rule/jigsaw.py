@@ -32,6 +32,12 @@ class Jigsaw(Rule, WithData):
                 self.partition.setdefault(partition, [])
                 self.partition[partition].append((i, j))
 
+    def description(self) -> str:
+        return (
+            "Instead of nine 3x3 boxes,"
+            " each of the nine irregularly shaped region contains all the numbers from 1 to 9 without repetition."
+        )
+
     def check_move(self, board: List[List[int]], row: int, col: int, digit: int) -> bool:
         if digit not in DIGITS:
             return True
