@@ -37,9 +37,17 @@ def extract_data_from_board(rules: List[Rule], board: List[List[int]]):
 
 
 def with_standard_rules(rules: List[Rule]) -> List[Rule]:
-    standard_rules = [Orthogonal(), SubBoard()]
+    include_orthogonal = True
+    include_sub_board = True
     for rule in rules:
-        if isinstance(rule, Jigsaw):
-            standard_rules = [Orthogonal()]
+        if isinstance(rule, Jigsaw) or isinstance(rule, SubBoard):
+            include_sub_board = False
+        elif isinstance(rule, Orthogonal):
+            include_orthogonal = False
 
-    return standard_rules + rules
+    if include_orthogonal:
+        rules.append(Orthogonal())
+    if include_sub_board:
+        rules.append(SubBoard())
+
+    return rules
