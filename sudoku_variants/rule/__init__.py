@@ -5,3 +5,4 @@ from sudoku_variants.rule.knight import Knight
 from sudoku_variants.rule.king import King
 from sudoku_variants.rule.consecutive import Consecutive
 from sudoku_variants.rule.jigsaw import Jigsaw
+from sudoku_variants.rule.disjoint import Disjoint
