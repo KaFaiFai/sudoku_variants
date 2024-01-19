@@ -3,13 +3,13 @@ from distutils.core import setup
 setup(
     name="sudoku_variants",
     packages=["sudoku_variants"],
-    version="0.1",  # Need update
+    version="0.1.1",  # Need update
     license="MIT",
     description="Sudoku solver and generator that supports variant rules",
     author="Rapid Rabbit",
     author_email="rapid.rabbit.tech@gmail.com",
     url="https://github.com/KaFaiFai/sudoku_variants",
-    download_url="https://github.com/KaFaiFai/sudoku_variants/archive/refs/tags/v_0_1.tar.gz",  # Need update
+    download_url="https://github.com/KaFaiFai/sudoku_variants/archive/refs/tags/v_0_1_1.tar.gz",  # Need update
     keywords=["Sudoku", "Variants", "Generator", "Solver"],
     install_requires=[],
     classifiers=[
