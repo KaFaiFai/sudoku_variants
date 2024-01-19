@@ -43,9 +43,9 @@ class Sudoku:
 
         return True
 
-    def __str__(self) -> str:
-        textRows = []
-        sepLine = (
+    def show(self, rule_description=False):
+        text_rows = []
+        sep_line = (
             "+"
             + "-" * (NUM_COL // 3 * 2 + 1)
             + "+"
@@ -55,20 +55,26 @@ class Sudoku:
             + "+"
         )
 
-        textRows.append(f"Rules: {R.to_name(self.rules)}")
-        textRows.append(sepLine)
+        if rule_description:
+            text_rows.append(f"Rules:")
+            for rule in self.rules:
+                text_rows.append(f"{rule}: {rule.description()}")
+        else:
+            text_rows.append(f"Rules: {R.to_name(self.rules)}")
+        text_rows.append(sep_line)
         for i, row in enumerate(self.board):
             chars = ["|"]
             for j, digit in enumerate(row):
                 chars.append(str(digit) if digit in DIGITS else "*")
                 if j in [2, 5, 8]:
                     chars.append("|")
-            textRows.append(" ".join(chars))
+            text_rows.append(" ".join(chars))
 
             if i in [2, 5, 8]:
-                textRows.append(sepLine)
+                text_rows.append(sep_line)
 
-        return "\n".join(textRows)
+        for row in text_rows:
+            print(row)
 
     def copy(self) -> "Sudoku":
         return Sudoku(B.copy_board(self.board), self.rules)
