@@ -16,14 +16,6 @@ def check_move(rules: List[Rule], board: List[List[int]], row: int, col: int, di
     return all(rule.check_move(board, row, col, digit) for rule in rules)
 
 
-def remove_candidates(
-    rules: List[Rule], candidates: List[List[List[bool]]], row: int, col: int, digit: int
-) -> List[List[List[bool]]]:
-    for rule in rules:
-        candidates = rule.remove_candidates(candidates, row, col, digit)
-    return candidates
-
-
 def populate_initial_data(rules: List[Rule]):
     for rule in rules:
         if isinstance(rule, WithData):

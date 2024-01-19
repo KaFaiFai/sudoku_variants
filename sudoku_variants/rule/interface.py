@@ -14,16 +14,6 @@ class Rule:
         """
         raise NotImplementedError("Please implement this method")
 
-    def remove_candidates(
-        self, candidates: List[List[List[bool]]], row: int, col: int, digit: int
-    ) -> List[List[List[bool]]]:
-        """
-        Deprecated
-        Remove candidates if the move is carried out to accelerate generation process
-        NOTE: do not remove the candidates at (row, col)
-        """
-        return candidates
-
     def __str__(self) -> str:
         return type(self).__name__
 

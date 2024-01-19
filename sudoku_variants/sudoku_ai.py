@@ -75,21 +75,6 @@ def _get_first_empty_or_none(board: List[List[int]]):
     return None
 
 
-def _init_candidates(board: Optional[List[List[int]]], rules: Optional[List[Rule]]) -> List[List[List[bool]]]:
-    """
-    True -> possible candidate; False -> impossible candidate
-    """
-    candidates = [[[True for _ in range(len(DIGITS))] for _ in range(NUM_COL)] for _ in range(NUM_ROW)]
-    if (board is None) or (rules is None):
-        return candidates
-
-    for row in range(NUM_ROW):
-        for col in range(NUM_COL):
-            digit = board[row][col]
-            candidates = R.remove_candidates(rules, candidates, row, col, digit)
-    return candidates
-
-
 def _solve_helper(
     board: List[List[int]],
     rules: List[Rule],
