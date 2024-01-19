@@ -2,14 +2,14 @@ from distutils.core import setup
 
 setup(
     name="sudoku_variants",
-    packages=["sudoku_variants"],
-    version="0.1.2",  # Need update
+    packages=["sudoku_variants", "sudoku_variants/func", "sudoku_variants/rule"],
+    version="0.1.3",  # Need update
     license="MIT",
     description="Sudoku solver and generator that supports variant rules",
     author="Rapid Rabbit",
     author_email="rapid.rabbit.tech@gmail.com",
     url="https://github.com/KaFaiFai/sudoku_variants",
-    download_url="https://github.com/KaFaiFai/sudoku_variants/archive/refs/tags/v_0_1_2.tar.gz",  # Need update
+    download_url="https://github.com/KaFaiFai/sudoku_variants/archive/refs/tags/v_0_1_3.tar.gz",  # Need update
     keywords=["Sudoku", "Variants", "Generator", "Solver"],
     install_requires=[],
     classifiers=[
