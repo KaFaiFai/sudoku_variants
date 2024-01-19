@@ -1,3 +1,3 @@
-from sudoku_variants.sudoku import Sudoku
-from sudoku_variants.sudoku_ai import SudokuAI
-import sudoku_variants.sudoku_const as SudokuConst
+from .sudoku import Sudoku
+from .sudoku_ai import SudokuAI
+import sudoku_const as SudokuConst
