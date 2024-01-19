@@ -9,7 +9,7 @@ setup(
     author="Rapid Rabbit",
     author_email="rapid.rabbit.tech@gmail.com",
     url="https://github.com/KaFaiFai/sudoku_variants",
-    download_url="https://github.com/KaFaiFai/sudoku_variants/archive/refs/tags/v_0_1_4.tar.gz",  # Need update
+    download_url="https://github.com/KaFaiFai/sudoku_variants/archive/refs/tags/v0.1.5.tar.gz",  # Need update
     keywords=["Sudoku", "Variants", "Generator", "Solver"],
     install_requires=[],
     classifiers=[
